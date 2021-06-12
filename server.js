@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // else {
 //   DATABASE_URL = process.env['DATABASE_URL']
 // }
-
+console.log(process.env['DATABASE_URL'])
 const pool = new Pool({
   connectionString: 'postgres://eyktsiqnxiisti:b61bdfc7f279ec6d1ad57142bf71df43f267504b9e0fe3725692654ce5fe4205@ec2-54-163-97-228.compute-1.amazonaws.com:5432/dhhgcct6qg58c'
 });

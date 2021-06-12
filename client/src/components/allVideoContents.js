@@ -16,6 +16,7 @@ const AllVideoFiles = () => {
         fetch("/")
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 allVideos.current = data;
                 setDisplayVideos(data);
             }).catch(error => alert("Refresh The page, something went wrong"));
