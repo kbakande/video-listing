@@ -19,7 +19,10 @@ const AllVideoFiles = () => {
                 console.log(data);
                 allVideos.current = data;
                 setDisplayVideos(data);
-            }).catch(error => alert("Refresh The page, something went wrong"));
+            }).catch(error => {
+                console.log(error);
+                alert(error)
+            });
     }, [])
 
     const handleSearch = (event) => {
