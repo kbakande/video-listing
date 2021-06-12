@@ -12,19 +12,15 @@ const { url } = require("inspector");
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-if (process.env.get('DATABASE_URL')) {
-  DATABASE_URL = 'sqlite:///' + os.path.join(basedir, 'app.db')
-}
-else {
-  DATABASE_URL = process.env['DATABASE_URL']
-}
+// if (process.env.get('DATABASE_URL')) {
+//   DATABASE_URL = 'sqlite:///' + os.path.join(basedir, 'app.db')
+// }
+// else {
+//   DATABASE_URL = process.env['DATABASE_URL']
+// }
 
 const pool = new Pool({
-  host: "localhost",
-  port: 5432,
-  user: "aaokunade",
-  password: "alamu3809",
-  database: "video_recommendation"
+  connectionString: process.env['DATABASE_URL']
 });
 
 const allVideosQuery = `SELECT * FROM videos`;
