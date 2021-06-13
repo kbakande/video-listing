@@ -18,10 +18,13 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // else {
 //   DATABASE_URL = process.env['DATABASE_URL']
 // }
+const connectionString = process.env['DATABASE_URL'];
+console.log(connectionString);
 
 const pool = new Pool({
-  connectionString: process.env['DATABASE_URL']
+  connectionString,
 });
+
 console.log(pool.connectionString)
 
 const allVideosQuery = `SELECT * FROM videos`;
@@ -35,6 +38,7 @@ const isValidID = (id) => {
 
 // GET "/"
 app.get("/", (req, res) => {
+  console.log('I am called');
   pool.query(allVideosQuery)
     .then(result => {
       console.log(result.rows);
