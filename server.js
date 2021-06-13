@@ -41,10 +41,8 @@ const isValidID = (id) => {
 
 // GET "/"
 app.get("/allVideos", (req, res) => {
-  console.log(pool);
   pool.query(allVideosQuery)
     .then(result => {
-      console.log(result.rows)
       res.send(result.rows);
     })
 });
@@ -53,7 +51,7 @@ app.get("/allVideos", (req, res) => {
 app.use(express.json());
 let newVideoID = 1;
 let rating = 0;
-app.post("/", (req, res) => {
+app.post("/newVideo", (req, res) => {
   const addedVideo = req.body;
   const urlValidation = /(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch|v|embed)(?:\.php)?(?:\?.*v=|\/))([a-zA-Z0-9_-]+)/;
 
@@ -112,8 +110,8 @@ app.delete("/:ID", (req, res) => {
   }
 });
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname + '/client/build/index.html'))
-// })
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
+})
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

@@ -22,7 +22,7 @@ const AddVideo = (props) => {
             }
 
             if (!(title.toString().trim().length === 0) && (url.match(urlValidation))) {
-                fetch("/", {
+                fetch("/newVideo", {
                     method: "POST",
                     headers: {
                         'Accept': 'application/json',
