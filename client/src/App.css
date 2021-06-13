@@ -20,8 +20,7 @@ background-color: blueviolet;
 .oneVideoFrame{
   /* display: grid; */
   /* grid-template-columns: repeat(3, 1fr); */
-  /* min-width: 25rem; */
-  width: 30%;
+  min-width: 25rem;
   min-height: 32rem;
   margin-left: 3rem;
   color: rgb(119, 68, 6);
