@@ -19,12 +19,15 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // else {
 //   DATABASE_URL = process.env['DATABASE_URL']
 // }
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+// process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 const connectionString = process.env['DATABASE_URL'];
 console.log(connectionString);
 
 const pool = new Pool({
   connectionString,
+  ssl: {
+    rejectUnauthorized: false,
+  }
 });
 
 const allVideosQuery = `SELECT * FROM videos`;
