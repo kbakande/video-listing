@@ -14,9 +14,7 @@ const AllVideoFiles = () => {
 
     useEffect(() => {
         fetch("/allVideos")
-            .then(response => {
-                response.json()
-            })
+            .then(response => response.json())
             .then(data => {
                 console.log(data);
                 allVideos.current = data;
