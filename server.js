@@ -19,13 +19,10 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 //   DATABASE_URL = process.env['DATABASE_URL']
 // }
 const connectionString = process.env['DATABASE_URL'];
-console.log(connectionString);
 
 const pool = new Pool({
   connectionString,
 });
-
-console.log(pool.connectionString)
 
 const allVideosQuery = `SELECT * FROM videos`;
 const newVideoInsertQuery = `INSERT INTO videos (video_id, title, url, rating) VALUES ($1, $2, $3, $4) RETURNING id`;
@@ -37,11 +34,9 @@ const isValidID = (id) => {
 };
 
 // GET "/"
-app.get("/", (req, res) => {
-  console.log('I am called');
+app.get("/allVideos", (req, res) => {
   pool.query(allVideosQuery)
     .then(result => {
-      console.log(result.rows);
       res.send(result.rows);
     })
 });
@@ -65,8 +60,7 @@ app.post("/", (req, res) => {
       .then(result => {
         pool.query(allVideosQuery)
           .then(result => {
-            res.status(201).send(result.rows)
-            console.log(result.rows)
+            res.status(201).send(result.rows)s
           })
       }).catch(error => res.status(500).send(error))
 
@@ -89,8 +83,7 @@ app.get("/:ID", (req, res) => {
         if (result.rows.length === 0) {
           res.status(404).send({ message: "Supplier not found" })
         } else {
-          res.send({ video_id: result.rows[0]["video_id"] });
-          console.log(result.rows[0]["video_id"]);
+          res.send({ video_id: result.rows[0]["video_id"] })
         }
       }).catch(error => res.status(500).send(error))
   }
@@ -111,8 +104,8 @@ app.delete("/:ID", (req, res) => {
   }
 });
 
-app.get('*', (req, res) => {
-  console.log('I am called');
-  res.sendFile(path.join(__dirname + '/client/build/index.html'))
-})
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname + '/client/build/index.html'))
+// })
+
 app.listen(port, () => console.log(`Listening on port ${port}`));

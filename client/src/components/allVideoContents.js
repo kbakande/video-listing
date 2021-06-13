@@ -13,13 +13,11 @@ const AllVideoFiles = () => {
     const [sortVideoButton, setSortVideoButton] = useState("Ascending");
 
     useEffect(() => {
-        fetch("/")
+        fetch("/allVideos")
             .then(response => {
-                console.log(response);
                 response.json()
             })
             .then(data => {
-                console.log(data);
                 allVideos.current = data;
                 setDisplayVideos(data);
             }).catch(error => {
