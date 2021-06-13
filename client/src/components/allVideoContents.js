@@ -18,6 +18,7 @@ const AllVideoFiles = () => {
                 response.json()
             })
             .then(data => {
+                console.log(data);
                 allVideos.current = data;
                 setDisplayVideos(data);
             }).catch(error => {
