@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // else {
 //   DATABASE_URL = process.env['DATABASE_URL']
 // }
-const connectionString = ` ${process.env['DATABASE_URL']}?ssl=verify-full`;
+const connectionString = `${process.env['DATABASE_URL']}?ssl=verify-full`;
 console.log(connectionString);
 
 const pool = new Pool({
