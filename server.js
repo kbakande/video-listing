@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 //   DATABASE_URL = process.env['DATABASE_URL']
 // }
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
-const connectionString = `${process.env['DATABASE_URL']}?ssl=disable`;
+const connectionString = process.env['DATABASE_URL'];
 console.log(connectionString);
 
 const pool = new Pool({
