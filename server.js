@@ -11,12 +11,6 @@ const { title } = require("process");
 const { url } = require("inspector");
 app.use(cors());
 
-app.all('*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // if (process.env.get('DATABASE_URL')) {
@@ -25,7 +19,8 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // else {
 //   DATABASE_URL = process.env['DATABASE_URL']
 // }
-const connectionString = process.env['DATABASE_URL'];
+const connectionString = ` ${process.env['DATABASE_URL']}?ssl=verify-full`;
+console.log(connectionString);
 
 const pool = new Pool({
   connectionString,
