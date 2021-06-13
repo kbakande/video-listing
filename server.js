@@ -10,6 +10,13 @@ const { Pool } = require("pg");
 const { title } = require("process");
 const { url } = require("inspector");
 app.use(cors());
+
+app.all('*', function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 // if (process.env.get('DATABASE_URL')) {
@@ -35,8 +42,10 @@ const isValidID = (id) => {
 
 // GET "/"
 app.get("/allVideos", (req, res) => {
+  console.log(pool);
   pool.query(allVideosQuery)
     .then(result => {
+      console.log(result.rows)
       res.send(result.rows);
     })
 });
