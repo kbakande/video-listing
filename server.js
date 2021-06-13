@@ -112,6 +112,7 @@ app.delete("/:ID", (req, res) => {
 });
 
 app.get('*', (req, res) => {
+  console.log('I am called');
   res.sendFile(path.join(__dirname + '/client/build/index.html'))
 })
 app.listen(port, () => console.log(`Listening on port ${port}`));
