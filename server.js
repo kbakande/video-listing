@@ -60,7 +60,7 @@ app.post("/", (req, res) => {
       .then(result => {
         pool.query(allVideosQuery)
           .then(result => {
-            res.status(201).send(result.rows)s
+            res.status(201).send(result.rows)
           })
       }).catch(error => res.status(500).send(error))
 
